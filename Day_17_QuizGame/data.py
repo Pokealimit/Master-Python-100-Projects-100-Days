@@ -1,15 +1,12 @@
 question_data = [
-    {"text": "A slug's blood is green.", "answer": "True"},
-    {"text": "The loudest animal is the African Elephant.", "answer": "False"},
-    {"text": "Approximately one quarter of human bones are in the feet.", "answer": "True"},
-    {"text": "The total surface area of a human lungs is the size of a football pitch.", "answer": "True"},
-    {"text": "In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.", "answer": "True"},
-    {"text": "In London, UK, if you happen to die in the House of Parliament, you are entitled to a state funeral.", "answer": "False"},
-    {"text": "It is illegal to pee in the Ocean in Portugal.", "answer": "True"},
-    {"text": "You can lead a cow down stairs but not up stairs.", "answer": "False"},
-    {"text": "Google was originally called 'Backrub'.", "answer": "True"},
-    {"text": "Buzz Aldrin's mother's maiden name was 'Moon'.", "answer": "True"},
-    {"text": "No piece of square dry paper can be folded in half more than 7 times.",
-        "answer": "False"},
-    {"text": "A few ounces of chocolate can to kill a small dog.", "answer": "True"}
+    {"category":"History","type":"multiple","difficulty":"medium","question":"Which of the following Assyrian kings did NOT rule during the Neo-Assyrian Empire?","correct_answer":"Shamshi-Adad III","incorrect_answers":["Shalmaneser V","Esharhaddon","Ashur-nasir-pal II"]},
+    {"category":"Geography","type":"boolean","difficulty":"medium","question":"The capital of the US State Ohio is the city of Chillicothe.","correct_answer":"False","incorrect_answers":["True"]},
+    {"category":"Vehicles","type":"multiple","difficulty":"hard","question":"What model was the sports car gifted to Yuri Gagarin by the French government in 1965?","correct_answer":"Matra Djet","incorrect_answers":["Porsche 911","Alpine A110","AC Cobra"]},
+    {"category":"Entertainment: Video Games","type":"multiple","difficulty":"hard","question":"Which game in the &quot;Monster Hunter&quot; series introduced the monster &quot;Gobul&quot;?","correct_answer":"Monster Hunter Tri","incorrect_answers":["Monster Hunter Freedom Unite","Monster Hunter Frontier","Monster Hunter Generations"]},
+    {"category":"Entertainment: Film","type":"multiple","difficulty":"hard","question":"In what year does Jurassic World open in the &quot;Jurassic Park&quot; universe?","correct_answer":"2005","incorrect_answers":["2007","2015","2020"]},
+    {"category":"Science: Mathematics","type":"boolean","difficulty":"easy","question":"The sum of any two odd integers is odd.","correct_answer":"False","incorrect_answers":["True"]},
+    {"category":"Entertainment: Video Games","type":"multiple","difficulty":"medium","question":"Which Crypt of the NecroDancer (2015) character has a soundtrack by Jake &quot;Virt&quot; Kaufman?","correct_answer":"Uncle Eli","incorrect_answers":["Cadence","Nocturna","Octavian (Bard)"]},
+    {"category":"Entertainment: Music","type":"boolean","difficulty":"hard","question":"The singer Billie Holiday was also known as &quot;Lady Day&quot;.","correct_answer":"True","incorrect_answers":["False"]},
+    {"category":"History","type":"multiple","difficulty":"hard","question":"The son of which pope supposedly held a lecherous f&ecirc;te involving 50 courtesans in the papal palace?","correct_answer":"Alexander VI","incorrect_answers":["Innocent V","Urban II","Pius III"]},
+    {"category":"Entertainment: Comics","type":"multiple","difficulty":"easy","question":"In &quot;Homestuck&quot; what is Dave Strider&#039;s guardian?","correct_answer":"Bro","incorrect_answers":["Becquerel","Doc Scratch","Halley"]}
 ]
