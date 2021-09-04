@@ -13,10 +13,10 @@ def turn_ccw():
     tim.left(10)
 
 screen.listen()
-screen.onkey(key="w", fun=move_forwards)
-screen.onkey(key="s", fun=move_backwards)
-screen.onkey(key="d", fun=turn_cw)
-screen.onkey(key="a", fun=turn_ccw)
-screen.onkey(key="c", fun=tim.reset)
+screen.onkey(move_forwards, "w")
+screen.onkey(move_backwards, "s")
+screen.onkey(turn_cw, "d")
+screen.onkey(turn_ccw, "a")
+screen.onkey(tim.reset, "c")
 
 screen.exitonclick()
