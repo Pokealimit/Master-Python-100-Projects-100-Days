@@ -17,14 +17,15 @@ for _ in range(4):
 
 tim = t.Turtle()
 t.colormode(255)
+tim.speed(10)
 tim.penup()
+tim.hideturtle()
 inital_y = -235
 tim.setpos(-235, inital_y)
 
 for y in range(10):
     for x in range(10):
-        tim.color(r.choice(color_list))
-        tim.dot(20)
+        tim.dot(20 , r.choice(color_list))
         tim.forward(50)
 
     inital_y += 50
