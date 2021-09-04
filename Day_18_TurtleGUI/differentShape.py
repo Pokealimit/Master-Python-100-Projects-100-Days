@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen, colormode, forward, right
+from turtle import Turtle, Screen, colormode
 from random import randint
 
 class differentShape:
