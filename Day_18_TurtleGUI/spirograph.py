@@ -8,17 +8,20 @@ def random_pen_colour() -> tuple:
     B = randint(0, 255)
     return (R,G,B)
 
+def drawSpirograph(number_of_circles: int) -> tuple:
+    return np.linspace(0,360,number_of_circles)
+
 
 if __name__ == "__main__":
     tim = t.Turtle()
-    tim.speed(10)
+    tim.speed("fastest")
     r = 50
     t.colormode(255)
 
-    angles = np.linspace(0,360,36)
+    angles = drawSpirograph(20)
 
     for angle in angles:
-        tim.pencolor(random_pen_colour())
+        tim.color(random_pen_colour())
         tim.setheading(angle)
         tim.circle(r)
 
