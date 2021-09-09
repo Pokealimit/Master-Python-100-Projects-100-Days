@@ -10,8 +10,20 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
+timer = None
 
 # ---------------------------- TIMER RESET ------------------------------- # 
+def reset_timer():
+    global reps
+    reps = 0
+    window.after_cancel(timer)
+    # Reset timer text to 00:00
+    canvas.itemconfig(timer_text, text="00:00")
+    # Reset timer_head back to "Timer"
+    timer_header.config(text="Timer", fg=GREEN)
+    # Reset check marks
+    ticks.config(text="")
+    
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
@@ -58,10 +70,16 @@ def count_down(count):
 
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_sec}")
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        global timer
+        timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
-
+        # Add checkmark for each work session completed
+        marks = ""
+        work_sessions = math.floor(reps/2)
+        for _ in range(work_sessions):
+            marks += "✔"
+        ticks.config(text=marks)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -85,11 +103,11 @@ canvas.grid(column=1, row=1)
 # Buttons
 start_btn = Button(text="Start", highlightthickness=0, font=(FONT_NAME, 18), command=start_timer)
 start_btn.grid(column=0, row=2)
-reset_btn = Button(text="Reset", highlightthickness=0, font=(FONT_NAME, 18))
+reset_btn = Button(text="Reset", highlightthickness=0, font=(FONT_NAME, 18), command=reset_timer)
 reset_btn.grid(column=2, row=2)
 
 # Pomodoro Ticks
-ticks = Label(text="✔", fg=GREEN, bg=YELLOW, font=(24))
+ticks = Label(text="", fg=GREEN, bg=YELLOW, font=(24))
 ticks.grid(column=1, row=3)
 
 window.mainloop()
