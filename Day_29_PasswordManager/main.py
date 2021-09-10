@@ -1,4 +1,6 @@
 from tkinter import *
+# Need to import messagebox as it is not a class/constant but a module
+from tkinter import messagebox
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -7,9 +9,18 @@ def save_entry():
     save_email = email_username_entry.get()
     save_password = password_entry.get()
     # entry = save_website + " | " + save_email + " | " + save_password + "\n"
-    with open("Entries.txt", "a") as entries:
-        entries.write(f"{save_website} | {save_email} | {save_password}\n")
-    clear_entry()
+
+    # Check if field empty
+    if not save_password or not save_website:
+        messagebox.showinfo(title="Oops", message="Please don't leave any fields empty!")
+    else:
+        # Ask user confirmation
+        is_ok = messagebox.askokcancel(title=save_website, message=f"These are the details entered: \nEmail: {save_email} "
+                                                        f"\nPassword: {save_password} \nIs it ok to save?")
+        if is_ok:
+            with open("Entries.txt", "a") as entries:
+                entries.write(f"{save_website} | {save_email} | {save_password}\n")
+            clear_entry()
 
 def clear_entry():
     website_entry.delete(0,END)
