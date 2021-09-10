@@ -1,7 +1,7 @@
 from tkinter import *
 # Need to import messagebox as it is not a class/constant but a module
 from tkinter import messagebox
-import pyperclip
+import pyperclip, json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 from password_generator import random_password
@@ -16,7 +16,13 @@ def save_entry():
     save_website = website_entry.get()
     save_email = email_username_entry.get()
     save_password = password_entry.get()
-    # entry = save_website + " | " + save_email + " | " + save_password + "\n"
+
+    new_entry = {
+        save_website: {
+            "email": save_email,
+            "password": save_password
+        }
+    }
 
     # Check if field empty
     if not save_password or not save_website:
@@ -26,9 +32,25 @@ def save_entry():
         is_ok = messagebox.askokcancel(title=save_website, message=f"These are the details entered: \nEmail: {save_email} "
                                                         f"\nPassword: {save_password} \nIs it ok to save?")
         if is_ok:
-            with open("Entries.txt", "a") as entries:
-                entries.write(f"{save_website} | {save_email} | {save_password}\n")
-            clear_entry()
+            try:
+                with open("Entries.json", "r") as entries:
+                    # Read old data
+                    data = json.load(entries)
+                    # Update old data with new data
+                    data.update(new_entry)
+
+            except FileNotFoundError:
+                with open("Entries.json", "w") as entries:
+                    # Writing new file (first time)
+                    json.dump(new_entry, entries, indent=4)
+            
+            else:
+                with open("Entries.json", "w") as entries:
+                    # Writing updated data
+                    json.dump(data, entries, indent=4)
+
+            finally:
+                clear_entry()
 
 def clear_entry():
     website_entry.delete(0,END)
@@ -63,7 +85,7 @@ website_entry.grid(column=1, row=1, columnspan=2)
 website_entry.focus()
 email_username_entry = Entry(width=35)
 email_username_entry.grid(column=1, row=2, columnspan=2)
-email_username_entry.insert(0, "pokealimit@gmail.com")
+email_username_entry.insert(0, "123@gmail.com")
 password_entry = Entry(width=21)
 password_entry.grid(column=1, row=3)
 
