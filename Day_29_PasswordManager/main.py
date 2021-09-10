@@ -1,7 +1,15 @@
 from tkinter import *
 # Need to import messagebox as it is not a class/constant but a module
 from tkinter import messagebox
+import pyperclip
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+from password_generator import random_password
+
+def generate_password():
+    password = random_password()
+    password_entry.insert(0, password)
+    pyperclip.copy(password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_entry():
@@ -60,7 +68,7 @@ password_entry = Entry(width=21)
 password_entry.grid(column=1, row=3)
 
 # Button
-generate_btn = Button(text="Generate Password")
+generate_btn = Button(text="Generate Password", command=generate_password)
 generate_btn.grid(column=2, row=3)
 add_btn = Button(text="Add", width=36, command=save_entry)
 add_btn.grid(column=1, row=4, columnspan=2)
