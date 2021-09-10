@@ -68,13 +68,13 @@ def find_password():
     except FileNotFoundError:
         messagebox.showinfo(title="Oops", message="No Data File Found")
     else:
-        try:
+        if website_query in data:
             password_query = data[website_query]["password"]
             email_query = data[website_query]["email"]
-        except KeyError:
-            messagebox.showinfo(title="Oops", message="No details for the website exists")
-        else:
             messagebox.showinfo(title=website_query, message=f"Username/Email: {email_query} \nPassword: {password_query}")
+        else:
+            messagebox.showinfo(title="Oops", message=f"No details for {website_query} found")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
