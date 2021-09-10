@@ -17,9 +17,22 @@ def change_card():
     canvas.itemconfig(word_text, text=current_card["French"], fill="black")
     flip_timer = window.after(3000,flip_card)
 
+
+def is_known():
+    french_words_list.remove(current_card)
+    french_words_to_learn = pd.DataFrame(french_words_list)
+    french_words_to_learn.to_csv("data/words_to_learn.csv", index=False)
+    change_card()
+
 # ---------------------------- READ CSV ------------------------------- #
-french_words = pd.read_csv("data/french_words.csv")
-french_words_list = french_words.to_dict(orient="records")
+try:
+    # retrieve saved progress
+    french_words = pd.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    # fetch new 
+    french_words = pd.read_csv("data/french_words.csv")
+finally:
+     french_words_list = french_words.to_dict(orient="records")
 
 # ---------------------------- FLIP CARD ------------------------------- #
 
@@ -57,7 +70,7 @@ wrong_button_image = PhotoImage(file="images/wrong.png")
 wrong_button = Button(image=wrong_button_image, highlightthickness=0, command=change_card)
 wrong_button.grid(column=0, row=1)
 tick_button_image = PhotoImage(file="images/right.png")
-tick_button = Button(image=tick_button_image, highlightthickness=0, command=change_card)
+tick_button = Button(image=tick_button_image, highlightthickness=0, command=is_known)
 tick_button.grid(column=1, row=1)
 
 window.mainloop()
