@@ -3,7 +3,7 @@ import requests, pprint
 from datetime import datetime
 
 
-NUTRITIONIX_ID = config('NUTRITIONIX_ID')
+NUTRITIONIX_ID = config('NUTRITIONIX_ID')           # Alternatively, use os.getenv("")
 NUTRITIONIX_APIKEY = config('NUTRITIONIX_APIKEY')
 GENDER = config('GENDER')
 HEIGHT = config('HEIGHT')
