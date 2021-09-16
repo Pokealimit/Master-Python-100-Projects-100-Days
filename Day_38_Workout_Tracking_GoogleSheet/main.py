@@ -52,35 +52,22 @@ pprint.pprint(worksheet_data)
 # * Format today date and time to prep for input into google sheet
 current = datetime.now()
 only_date, only_time = current.date().strftime('%d/%m/%Y'), current.time().strftime("%H:%M:%S")
-# only_date, only_time = current.date().strftime('%d/%m/%Y'), current.time().strftime("%X")
 print(only_date)
 print(only_time)
 
 
 # * Adding Row to google worksheet using sheety
 for exercise in exercise_list:
-# for exercise in nutri_data['exercises']:
 
     sheety_row_data = {
-        "workouts": {
+        "workout": {
             "date": only_date,
             "time": only_time,
             "exercise": exercise['exercise'],
-            "duration": str(exercise['duration']),
-            "calories": str(exercise['calories'])
+            "duration": exercise['duration'],
+            "calories": exercise['calories']
         }
     }
-
-    # sheety_row_data = {
-    #     "workouts": {
-    #         "date": only_date,
-    #         "time": only_time,
-    #         "exercise": exercise["name"].title(),
-    #         "duration": exercise["duration_min"],
-    #         "calories": exercise["nf_calories"]
-    #     }
-    # }
-
 
     response = requests.post(url=WORKSHEET_ENDPOINT, json=sheety_row_data, headers=sheety_auth_headers)
     response.raise_for_status()
